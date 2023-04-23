@@ -133,13 +133,15 @@ namespace PdfToSvg.Drawing
                 }
             }
 
+            var svgViewWidth = options.Width ?? pageWidth;
+            var svgViewHeidht = options.Height ?? pageHeight;
             svg = new XElement(ns + "svg",
-                new XAttribute("width", pageWidth.ToString("0", CultureInfo.InvariantCulture)),
-                new XAttribute("height", pageHeight.ToString("0", CultureInfo.InvariantCulture)),
+                new XAttribute("width", svgViewWidth.ToString("0", CultureInfo.InvariantCulture)),
+                new XAttribute("height", svgViewHeidht.ToString("0", CultureInfo.InvariantCulture)),
                 new XAttribute("preserveAspectRatio", "xMidYMid meet"),
                 new XAttribute("viewBox",
                     string.Format(CultureInfo.InvariantCulture, "0 0 {0:0.####} {1:0.####}",
-                    pageWidth, pageHeight
+                        svgViewWidth, svgViewHeidht
                 )),
                 new XComment(" Generator: PdfToSvg.NET "),
                 style,

@@ -100,5 +100,9 @@ namespace PdfToSvg
         /// Note that other types of links, including links within the document, are currently not supported.
         /// </remarks>
         public bool IncludeLinks { get; set; } = true;
+
+        public int? Width { get; set; }
+
+        public int? Height { get; set; }
     }
 }
