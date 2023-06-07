@@ -23,7 +23,7 @@
     <PackageIconUrl />
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.8.3</Version>
+    <Version>0.8.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Configuration) == 'Release'">

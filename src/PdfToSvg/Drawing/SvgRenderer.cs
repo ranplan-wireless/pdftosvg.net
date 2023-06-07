@@ -136,8 +136,8 @@ namespace PdfToSvg.Drawing
             var svgViewWidth = options.Width ?? pageWidth;
             var svgViewHeidht = options.Height ?? pageHeight;
             svg = new XElement(ns + "svg",
-                new XAttribute("width", svgViewWidth.ToString("0", CultureInfo.InvariantCulture)),
-                new XAttribute("height", svgViewHeidht.ToString("0", CultureInfo.InvariantCulture)),
+                new XAttribute("width", $"{svgViewWidth.ToString("0", CultureInfo.InvariantCulture)}{options.Unit}"),
+                new XAttribute("height", $"{svgViewHeidht.ToString("0", CultureInfo.InvariantCulture)}{options.Unit}"),
                 new XAttribute("preserveAspectRatio", "xMidYMid meet"),
                 new XAttribute("viewBox",
                     string.Format(CultureInfo.InvariantCulture, "0 0 {0:0.####} {1:0.####}",
@@ -1196,7 +1196,10 @@ namespace PdfToSvg.Drawing
         private void cs_FillColorSpace(PdfName name)
         {
             graphicsState.FillColorSpace = GetColorSpace(name);
-            SetFillColor(graphicsState.FillColorSpace.GetDefaultRgbColor());
+            var defaultColor = options.DefaultColor == null
+                ? graphicsState.FillColorSpace.GetDefaultRgbColor()
+                : new RgbColor(options.DefaultColor[0], options.DefaultColor[1], options.DefaultColor[2]);
+            SetFillColor(defaultColor);
         }
 
         [Operation("SC")]

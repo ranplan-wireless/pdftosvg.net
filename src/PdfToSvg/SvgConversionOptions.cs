@@ -104,5 +104,9 @@ namespace PdfToSvg
         public int? Width { get; set; }
 
         public int? Height { get; set; }
+
+        public string Unit { get; set; }
+
+        public float[] DefaultColor { get; set; }
     }
 }
